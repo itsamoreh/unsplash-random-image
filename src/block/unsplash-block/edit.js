@@ -43,7 +43,12 @@ const Edit = ( props ) => {
 							{ logo }
 						</div>
 						<div className="image-select-form">
-							<input className="query" type="text" name="query" placeholder={ __( 'Query (optional)' ) } value={ query } />
+							<TextControl
+								className="query"
+								placeholder={ __( 'Query (optional)' ) }
+								value={ query }
+								onChange={ ( newQuery ) => setAttributes( { query: newQuery } ) }
+							/>
 							<button className="button" onClick={ getPhoto }>{ __( 'Get Image' ) }</button>
 						</div>
 					</div>

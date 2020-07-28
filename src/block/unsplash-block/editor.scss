@@ -26,7 +26,11 @@ $white: #fff;
 		display: flex;
 		justify-content: center;
 
-		.query,
+		.query div {
+			margin: 0;
+		}
+
+		.query input,
 		.button {
 			border-color: $black;
 			border-radius: 2px;
@@ -38,7 +42,7 @@ $white: #fff;
 			padding: 0.5rem;
 		}
 
-		.query {
+		.query input {
 			border-bottom-right-radius: 0;
 			border-top-right-radius: 0;
 		}
