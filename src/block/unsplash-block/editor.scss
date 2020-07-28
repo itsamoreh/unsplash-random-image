@@ -1,0 +1,55 @@
+// WordPress editor styles
+$space: 14px;
+$black: #000;
+$white: #fff;
+
+.wp-block-itsamoreh-unsplash-block {
+	.image-select {
+		align-items: center;
+		border: 2px solid $black;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin-bottom: $space;
+		padding: 2rem;
+
+		.logo {
+			// sass-lint:disable-block property-units - Need to use px to get the right aspect ratio on the logo.
+			height: 57px;
+			margin-bottom: $space;
+			width: 250px;
+		}
+	}
+
+	.image-select-form {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+
+		.query,
+		.button {
+			border-color: $black;
+			border-radius: 2px;
+			color: $black;
+			font-size: 1rem;
+			height: 36px; // sass-lint:disable-line property-units - Override different heights on input and button.
+			line-height: 1rem;
+			margin: 0;
+			padding: 0.5rem;
+		}
+
+		.query {
+			border-bottom-right-radius: 0;
+			border-top-right-radius: 0;
+		}
+
+		.button {
+			background-color: $black;
+			border-bottom-left-radius: 0;
+			border-left: 0;
+			border-top-left-radius: 0;
+			color: $white;
+			font-weight: 800;
+		}
+	}
+}
