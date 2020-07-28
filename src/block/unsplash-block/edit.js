@@ -4,6 +4,7 @@
 
 import logo from './logo';
 
+import { TextControl } from '@wordpress/components';
 import Unsplash from 'unsplash-js';
 
 const { __ } = wp.i18n;
@@ -23,7 +24,7 @@ const Edit = ( props ) => {
 	} = props;
 
 	const getPhoto = () => {
-		unsplash.photos.getRandomPhoto()
+		unsplash.photos.getRandomPhoto( { query } )
 			.then( ( res ) => res.json() )
 			.then( ( json ) => {
 				setAttributes( {
