@@ -2,11 +2,12 @@
  * EDIT: itsamoreh Unsplash Block
  */
 
-import logo from './logo';
-
-import { TextControl } from '@wordpress/components';
+import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 import Unsplash from 'unsplash-js';
+
+import logo from './logo';
 
 // API request to wp_options
 const unsplash = new Unsplash( { accessKey: 'zliMOHjFmFP_Wu9ilsGR5QukZTrV9NBB8OZBnlQzNaU' } );
@@ -14,6 +15,7 @@ const unsplash = new Unsplash( { accessKey: 'zliMOHjFmFP_Wu9ilsGR5QukZTrV9NBB8OZ
 const Edit = ( props ) => {
 	const {
 		attributes: {
+			accessKey,
 			image,
 			query,
 		},
@@ -21,6 +23,22 @@ const Edit = ( props ) => {
 		setAttributes,
 		isSelected,
 	} = props;
+
+	const postAccessKey = () => {
+		return fetch( 'akunsplashrandomimage/v1/access-key', {
+			method: 'POST',
+			body: accessKey,
+		} )
+			.catch( ( error ) => error );
+	};
+
+	const getAccessKey = () => {
+		fetch( 'akunsplashrandomimage/v1/access-key', {
+			method: 'GET',
+		} )
+			.then( ( savedAccessKey ) => setAttributes( { accessKey: savedAccessKey } ) )
+			.catch( ( error ) => error );
+	};
 
 	const getPhoto = () => {
 		unsplash.photos.getRandomPhoto( { query } )
@@ -33,9 +51,18 @@ const Edit = ( props ) => {
 	};
 
 	return (
-		<div
-			className={ className }
-		>
+		<div className={ className } >
+			<InspectorControls>
+				<PanelBody>
+					<PanelRow>
+						<TextControl
+							label={ __( 'Unsplash API Access Key', 'unsplash-random-image' ) }
+							value={ accessKey }
+							onChange={ ( newAccessKey ) => setAttributes( { accessKey: newAccessKey } ) }
+						/>
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
 			{
 				isSelected && (
 					<div className="image-select">
@@ -45,11 +72,11 @@ const Edit = ( props ) => {
 						<div className="image-select-form">
 							<TextControl
 								className="query"
-								placeholder={ __( 'Query (optional)' ) }
+								placeholder={ __( 'Query (optional)', 'unsplash-random-image' ) }
 								value={ query }
 								onChange={ ( newQuery ) => setAttributes( { query: newQuery } ) }
 							/>
-							<button className="button" onClick={ getPhoto }>{ __( 'Get Image' ) }</button>
+							<button className="button" onClick={ getPhoto }>{ __( 'Get Image', 'unsplash-random-image' ) }</button>
 						</div>
 					</div>
 				)
