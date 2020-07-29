@@ -6,6 +6,7 @@ $white: #fff;
 .wp-block-itsamoreh-unsplash-random-image {
 	.image-select {
 		align-items: center;
+		background: rgba($black, 0.1);
 		border: 2px solid $black;
 		display: flex;
 		flex-direction: column;
@@ -61,5 +62,9 @@ $white: #fff;
 			color: $white;
 			font-weight: 800;
 		}
+	}
+
+	img  {
+		width: 100%;
 	}
 }
