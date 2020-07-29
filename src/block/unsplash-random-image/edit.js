@@ -15,6 +15,7 @@ const Edit = ( props ) => {
 	const {
 		attributes: {
 			accessKey,
+			errorMsg,
 			image,
 			query,
 		},
@@ -31,6 +32,10 @@ const Edit = ( props ) => {
 		}
 
 	}, [] );
+
+	const clearError = () => {
+		setAttributes( { errorMsg: undefined } );
+	};
 
 	const createNotice = ( level, message ) => {
 		wp.data.dispatch( 'core/notices' ).createNotice(
@@ -61,12 +66,22 @@ const Edit = ( props ) => {
 	};
 
 	const getPhoto = () => {
+		const unsplash = new Unsplash( { accessKey } );
+
+		clearError();
+
 		unsplash.photos.getRandomPhoto( { query } )
 			.then( ( res ) => res.json() )
 			.then( ( json ) => {
-				setAttributes( {
-					image: json.urls.small,
-				} );
+
+				if ( json.errors ) {
+					setAttributes( { errorMsg: json.errors[ 0 ] } );
+				} else {
+					setAttributes( {
+						image: json.urls.small,
+					} );
+				}
+
 			} );
 	};
 
@@ -99,6 +114,11 @@ const Edit = ( props ) => {
 							/>
 							<button className="button" onClick={ getPhoto }>{ __( 'Get Image', 'unsplash-random-image' ) }</button>
 						</div>
+						{
+							errorMsg && (
+								<span className="error-message">{ errorMsg }</span>
+							)
+						}
 					</div>
 				)
 			}

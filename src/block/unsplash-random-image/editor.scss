@@ -19,6 +19,12 @@ $white: #fff;
 			margin-bottom: $space;
 			width: 200px;
 		}
+
+		.error-message {
+			font-size: 1rem;
+			margin: $space 0 0;
+			text-align: center;
+		}
 	}
 
 	.image-select-form {
