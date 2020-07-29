@@ -1,1 +1,1 @@
-import './unsplash-block';
+import './unsplash-random-image';

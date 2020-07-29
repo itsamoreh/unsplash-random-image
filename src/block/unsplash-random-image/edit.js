@@ -5,12 +5,11 @@
 import logo from './logo';
 
 import { TextControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import Unsplash from 'unsplash-js';
 
-const { __ } = wp.i18n;
-
 // API request to wp_options
-const unsplash = new Unsplash( { accessKey: '' } );
+const unsplash = new Unsplash( { accessKey: 'zliMOHjFmFP_Wu9ilsGR5QukZTrV9NBB8OZBnlQzNaU' } );
 
 const Edit = ( props ) => {
 	const {

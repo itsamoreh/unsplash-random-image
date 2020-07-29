@@ -1,7 +1,7 @@
 {
-	"name": "wds-block-starter",
+	"name": "unsplash-random-image",
 	"version": "0.0.1",
-	"description": "A block starter for WebDevStudios projects.",
+	"description": "A Gutenberg block that will get a random photo from Unsplash. Requires an Unsplash API access key.",
 	"main": "src/index.js",
 	"scripts": {
 		"start": "wp-scripts start",
@@ -21,8 +21,8 @@
 	"keywords": [
 		"Gutenberg"
 	],
-	"author": "WebDevStudios",
-	"license": "GPL-3.0",
+	"author": "Amor Kumar",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/WebDevStudios/wds-block-starter/issues"
 	},

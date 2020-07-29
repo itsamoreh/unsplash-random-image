@@ -8,15 +8,15 @@ import icon from './icon';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType( 'itsamoreh/unsplash-block', {
-	title: __( 'Unsplash Image', 'unsplash-block' ),
+registerBlockType( 'itsamoreh/unsplash-random-image', {
+	title: __( 'Unsplash Image', 'unsplash-random-image' ),
 	icon: {
 		src: icon,
 	},
 	category: 'common',
 	keywords: [
-		__( 'itsamoreh', 'unsplash-block' ),
-		__( 'unsplash-block', 'unsplash-block' ),
+		__( 'itsamoreh', 'unsplash-random-image' ),
+		__( 'unsplash-random-image', 'unsplash-random-image' ),
 	],
 	attributes: {
 		image: {

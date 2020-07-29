@@ -1,11 +1,11 @@
 {
-  "name": "itsamoreh/unsplash-block",
-  "description": "A block starter for WebDevStudios projects.",
+  "name": "itsamoreh/unsplash-random-image",
+  "description": "A Gutenberg block that will get a random photo from Unsplash. Requires an Unsplash API access key.",
   "type": "wordpress-plugin",
   "authors": [
     {
-      "name": "WebDevStudios",
-      "email": "contact@webdevstudios.com"
+      "name": "Amor Kumar",
+      "email": "hello@amorkumar.com"
     }
   ],
   "require": {},
