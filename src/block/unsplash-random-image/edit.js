@@ -2,6 +2,7 @@
  * EDIT: itsamoreh Unsplash Block
  */
 
+import { useEffect } from 'react';
 import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
@@ -9,9 +10,6 @@ import apiFetch from '@wordpress/api-fetch';
 import Unsplash from 'unsplash-js';
 
 import logo from './logo';
-
-// API request to wp_options
-const unsplash = new Unsplash( { accessKey: 'zliMOHjFmFP_Wu9ilsGR5QukZTrV9NBB8OZBnlQzNaU' } );
 
 const Edit = ( props ) => {
 	const {
@@ -25,13 +23,30 @@ const Edit = ( props ) => {
 		isSelected,
 	} = props;
 
+	useEffect( () => {
+
+		// Get the access key from the database if it's undefined.
+		if ( ! accessKey ) {
+			getAccessKey();
+		}
+
+	}, [] );
+
+	const createNotice = ( level, message ) => {
+		wp.data.dispatch( 'core/notices' ).createNotice(
+			level,
+			message,
+			{ isDismissible: true }
+		);
+	};
+
 	const postAccessKey = () => {
 		return apiFetch( {
 			path: '/akunsplashrandomimage/v1/access-key',
 			method: 'POST',
 			body: accessKey,
 		} )
-			.catch( ( error ) => error );
+			.catch( ( error ) => createNotice( 'error', `${ __( 'There was an error saving your Unsplash API Access Key' ) }: "${ error.data.status } ${ error.message }"` ) );
 	};
 
 	const getAccessKey = () => {
@@ -39,8 +54,10 @@ const Edit = ( props ) => {
 			path: '/akunsplashrandomimage/v1/access-key',
 			method: 'GET',
 		} )
-			.then( ( savedAccessKey ) => setAttributes( { accessKey: savedAccessKey } ) )
-			.catch( ( error ) => error );
+			.then( ( savedAccessKey ) => {
+				setAttributes( { accessKey: savedAccessKey } );
+			} )
+			.catch( ( error ) => createNotice( 'error', `${ __( 'There was an error retrieving a saved Unsplash API Access Key' ) }: "${ error.data.status } ${ error.message }"` ) );
 	};
 
 	const getPhoto = () => {
