@@ -88,8 +88,8 @@ function register_block() {
 }
 add_action( 'init', __NAMESPACE__ . '\register_block' );
 
-define( 'AK_INSERT_UNSPLASH_RANDOM_IMAGE_REST_NAMESPACE', 'akinsertunsplashrandomimage/v1' );
-define( 'AK_INSERT_UNSPLASH_RANDOM_IMAGE_API_KEY', 'ak_insert_unsplash_random_image_api_key' );
+define( 'AK_UNSPLASH_RANDOM_IMAGE_REST_NAMESPACE', 'akunsplashrandomimage/v1' );
+define( 'AK_UNSPLASH_RANDOM_IMAGE_ACCESS_KEY', 'ak_unsplash_random_image_access_key' );
 
 /**
  * Register custom WP Rest Endpoints to fetch and save the API Key.
@@ -99,23 +99,62 @@ define( 'AK_INSERT_UNSPLASH_RANDOM_IMAGE_API_KEY', 'ak_insert_unsplash_random_im
  */
 function rest_endpoint() {
 	register_rest_route(
-		AK_INSERT_UNSPLASH_RANDOM_IMAGE_REST_NAMESPACE,
-		'api-key/',
+		AK_UNSPLASH_RANDOM_IMAGE_REST_NAMESPACE,
+		'access-key/',
 		[
 			'methods'             => \WP_REST_Server::READABLE,
-			'callback'            => __NAMESPACE__ . '\rest_get_api_key',
+			'callback'            => __NAMESPACE__ . '\rest_get_access_key',
 			'permission_callback' => __NAMESPACE__ . '\rest_check_permission',
 		]
 	);
 
 	register_rest_route(
-		AK_INSERT_UNSPLASH_RANDOM_IMAGE_REST_NAMESPACE,
-		'api-key/',
+		AK_UNSPLASH_RANDOM_IMAGE_REST_NAMESPACE,
+		'access-key/',
 		[
 			'methods'             => \WP_REST_Server::EDITABLE,
-			'callback'            => __NAMESPACE__ . '\rest_update_api_key',
+			'callback'            => __NAMESPACE__ . '\rest_update_access_key',
 			'permission_callback' => __NAMESPACE__ . '\rest_check_permission',
 		]
 	);
 }
 add_action( 'rest_api_init', __NAMESPACE__ . '\rest_endpoint' );
+
+/**
+ * Register custom WP Rest Endpoints to fetch and save the API Key.
+ *
+ * @author itsamoreh
+ * @since 0.1.0
+ */
+function rest_get_access_key() {
+	$response = new \WP_REST_Response( get_option( AK_UNSPLASH_RANDOM_IMAGE_ACCESS_KEY, '' ) );
+	$response->set_status( 200 );
+
+	return $response;
+}
+
+/**
+ * Register custom WP Rest Endpoints to fetch and save the API Key.
+ *
+ * @author itsamoreh
+ * @since 0.1.0
+ */
+function rest_update_access_key( $request ) {
+	$saved_access_key = update_option( AK_UNSPLASH_RANDOM_IMAGE_ACCESS_KEY, $request->get_body() );
+
+	$response = new \WP_REST_Response( $saved_access_key );
+	$response->set_status( 201 );
+
+	return $response;
+}
+
+/**
+ * Make the custom REST endpoint private and accessible on to users that can `edit_posts`.
+ *
+ * @author itsamoreh
+ * @since 0.1.0
+ * @return bool
+ */
+function rest_check_permission() {
+	return current_user_can( 'edit_posts' );
+}
