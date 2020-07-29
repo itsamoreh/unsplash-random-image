@@ -1,4 +1,4 @@
-# Unsplash Random Photo
+# Unsplash Random Image
 
 A WordPress Gutenberg block that will get a random photo from Unsplash. Requires an Unsplash API access key.
 
