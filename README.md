@@ -11,7 +11,7 @@ Clone the repo into your WordPress plugins directory.
 ```
 cd wp-content/plugins
 
-git clone https://github.com/itsamoreh/itsamoreh-unsplash-random-image.git
+git clone https://github.com/itsamoreh/unsplash-random-image.git
 ```
 
 Install dependencies.
