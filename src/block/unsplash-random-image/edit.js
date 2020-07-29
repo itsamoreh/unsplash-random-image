@@ -5,6 +5,7 @@
 import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
+import apiFetch from '@wordpress/api-fetch';
 import Unsplash from 'unsplash-js';
 
 import logo from './logo';
@@ -25,7 +26,8 @@ const Edit = ( props ) => {
 	} = props;
 
 	const postAccessKey = () => {
-		return fetch( 'akunsplashrandomimage/v1/access-key', {
+		return apiFetch( {
+			path: '/akunsplashrandomimage/v1/access-key',
 			method: 'POST',
 			body: accessKey,
 		} )
@@ -33,7 +35,8 @@ const Edit = ( props ) => {
 	};
 
 	const getAccessKey = () => {
-		fetch( 'akunsplashrandomimage/v1/access-key', {
+		return apiFetch( {
+			path: '/akunsplashrandomimage/v1/access-key',
 			method: 'GET',
 		} )
 			.then( ( savedAccessKey ) => setAttributes( { accessKey: savedAccessKey } ) )
@@ -59,6 +62,7 @@ const Edit = ( props ) => {
 							label={ __( 'Unsplash API Access Key', 'unsplash-random-image' ) }
 							value={ accessKey }
 							onChange={ ( newAccessKey ) => setAttributes( { accessKey: newAccessKey } ) }
+							onBlur={ postAccessKey }
 						/>
 					</PanelRow>
 				</PanelBody>
