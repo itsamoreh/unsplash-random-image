@@ -112,7 +112,11 @@ const Edit = ( props ) => {
 								value={ query }
 								onChange={ ( newQuery ) => setAttributes( { query: newQuery } ) }
 							/>
-							<button className="button" onClick={ getPhoto }>{ __( 'Get Image', 'unsplash-random-image' ) }</button>
+							<button className="button" onClick={ getPhoto }>
+								{
+									! image ? __( 'Get Image', 'unsplash-random-image' ) : __( 'Get New Image', 'unsplash-random-image' )
+								}
+							</button>
 						</div>
 						{
 							errorMsg && (

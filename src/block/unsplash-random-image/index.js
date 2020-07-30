@@ -21,7 +21,7 @@ registerBlockType( 'itsamoreh/unsplash-random-image', {
 	attributes: {
 		image: {
 			type: 'string',
-			default: '',
+			default: null,
 		},
 		query: {
 			type: 'string',
