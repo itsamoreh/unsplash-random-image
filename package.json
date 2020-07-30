@@ -22,7 +22,7 @@
 		"Gutenberg"
 	],
 	"author": "Amor Kumar",
-	"license": "MIT",
+	"license": "GPL-3.0-or-later",
 	"bugs": {
 		"url": "https://github.com/WebDevStudios/wds-block-starter/issues"
 	},
