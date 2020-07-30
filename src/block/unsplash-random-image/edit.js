@@ -10,6 +10,7 @@ import apiFetch from '@wordpress/api-fetch';
 import Unsplash from 'unsplash-js';
 
 import logo from './logo';
+import icon from './icon';
 
 const Edit = ( props ) => {
 	const {
@@ -102,7 +103,7 @@ const Edit = ( props ) => {
 			</InspectorControls>
 			{
 				isSelected && (
-					<div className="image-select">
+					<div className="image-select-box">
 						<div className="logo">
 							{ logo }
 						</div>
@@ -114,9 +115,7 @@ const Edit = ( props ) => {
 								onChange={ ( newQuery ) => setAttributes( { query: newQuery } ) }
 							/>
 							<button className="button" onClick={ getPhoto }>
-								{
-									! image ? __( 'Get Image', 'unsplash-random-image' ) : __( 'Get New Image', 'unsplash-random-image' )
-								}
+								{ ! image ? __( 'Get Image', 'unsplash-random-image' ) : __( 'Get New Image', 'unsplash-random-image' ) }
 							</button>
 						</div>
 						{
@@ -127,7 +126,17 @@ const Edit = ( props ) => {
 					</div>
 				)
 			}
-			<img src={ image } alt="" />
+			{
+				image ? <img src={ image } alt="" /> :
+					(
+						<div className="block-placeholder">
+							<span className="text">
+								{ __( 'Click "Get Image" to get an image!', 'unsplash-random-image' ) }
+							</span>
+							{ icon }
+						</div>
+					)
+			}
 		</div>
 	);
 };

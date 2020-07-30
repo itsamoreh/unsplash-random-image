@@ -4,7 +4,7 @@ $black: #000;
 $white: #fff;
 
 .wp-block-itsamoreh-unsplash-random-image {
-	.image-select {
+	.image-select-box {
 		align-items: center;
 		background: rgba($black, 0.1);
 		border: 2px solid $black;
@@ -66,5 +66,21 @@ $white: #fff;
 
 	img  {
 		width: 100%;
+	}
+
+	.block-placeholder {
+		align-items: center;
+		background: rgba($black, 0.1);
+		color: $black;
+		display: flex;
+		font-weight: 800;
+		justify-content: space-between;
+		padding: $space;
+
+		svg {
+			height: 2rem;
+			left: 2rem;
+			width: 2rem;
+		}
 	}
 }
