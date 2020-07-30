@@ -92,6 +92,7 @@ const Edit = ( props ) => {
 					<PanelRow>
 						<TextControl
 							label={ __( 'Unsplash API Access Key', 'unsplash-random-image' ) }
+							help={ 'https://unsplash.com/developers' }
 							value={ accessKey }
 							onChange={ ( newAccessKey ) => setAttributes( { accessKey: newAccessKey } ) }
 							onBlur={ postAccessKey }
