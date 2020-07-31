@@ -10,6 +10,7 @@ import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'itsamoreh/unsplash-random-image', {
 	title: __( 'Unsplash Image', 'unsplash-random-image' ),
+	description: __( 'Get a random photo from Unsplash.', 'unsplash-random-image' ),
 	icon: {
 		src: icon,
 	},
